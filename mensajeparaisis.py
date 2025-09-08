@@ -32,7 +32,7 @@ WebDriverWait(driver, 60).until(
 
 # 🕒 Este bloque es para esperar la hora deseada, formato (12, 00)
 hora_objetivo = datetime.datetime.combine(
-    datetime.date.today(), datetime.time(11, 59)
+    datetime.date.today(), datetime.time(18, 20)
 )
 while datetime.datetime.now() < hora_objetivo:
     time.sleep(10)
@@ -49,7 +49,7 @@ contact.click()
 time.sleep(15)
 
 hora_actual= datetime.datetime.now()
-mensaje = f"Frase programada de las {hora_actual}: Recuerda mantenerte hidratada y hacer tus deberes. Te amo"
+mensaje = f"Frase programada de las {hora_actual}: Recuerda mantenerte hidratada y hacer tus deberes. Atte. Kevin del pasado <3"
 message_box = driver.find_element(
     By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]'
 )
