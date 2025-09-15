@@ -163,7 +163,7 @@ Crea una clase CuentaBancaria que tenga un atributo privado __saldo. Haz método
 
 class BankAccount:
     def __init__(self, balance, username, user_password):
-        self._balance = balance
+        self.__balance = balance
         self.username = username
         self._user_password = user_password
         self.bank_name = "BBVA Bancomer"
@@ -177,25 +177,25 @@ class BankAccount:
         print("Amount successfully deposited💰👍!.")
 
     def withdraw(self, amount):
-        if amount > self._balance:
+        if amount > self.__balance:
             print("Error: You do not have sufficient balance.")
-            print(f"You have: ${self._balance} dllrs of balance.")
+            print(f"You have: ${self.__balance} dllrs of balance.")
         else:
-            print("Ok, withdrawing: ${amount} dllrs from account.")
-            self._balance -= amount
+            print(f"Ok, withdrawing: ${amount} dllrs from account.")
+            self.__balance -= amount
             print("Amount successfully withdraw ➖💸")
 
     def donate(self, amount_todonate):
-        if amount_todonate > self._balance:
+        if amount_todonate > self.__balance:
             print("Error: You do not have sufficient balance.")
-            print(f"You have: ${self._balance}dllrs of balance.")
+            print(f"You have: ${self.__balance}dllrs of balance.")
         else:
             print(f"Ok, donating: ${amount_todonate} dllrs from account.")
-            self._balance -= amount_todonate
+            self.__balance -= amount_todonate
             print("Amount successfully donate 🥹💸")
 
     def show_balance(self):
-        print(f"Your account balance is: ${self._balance} dllrs. ")
+        print(f"Your account balance is: ${self.__balance} dllrs. ")
 
 
 username = input("Enter your username: ").strip()

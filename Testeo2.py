@@ -1,116 +1,32 @@
-"""🟦 4. Abstracción
+"""5. Caso avanzado: Herencia vs Composición
 
-Usa from abc import ABC, abstractmethod.
-Crea una clase abstracta Figura con un método abstracto area(). Luego crea dos clases (Cuadrado y Circulo) que implementen el método area().
+Crea una clase Usuario con nombre y email.
+Crea una clase CuentaBancaria que tenga un saldo y un objeto Usuario dentro.
+Muestra cómo acceder a los datos del usuario desde la cuenta.
 
-👉 Objetivo: Practicar cómo obligar a las clases hijas a implementar métodos."""
+👉 Pregunta de reflexión: ¿por qué aquí no conviene que CuentaBancaria herede de Usuario?"""
 
-from abc import ABC, abstractmethod
+class User: 
+    def __init__(self, name, email):
+        self.name= name
+        self.email= email
+        
+class BankAccount:
+    def __init__(self, balance, user):
+        self.__balance= balance
+        self.user= user
+        
+    def show_user(self):
+        print("This is the user's data: ")
+        print(f"Username: {self.user.name} - User_Email: {self.user.email} - User_Balance: ${self.__balance} dllrs.")
 
+user_name= input("Insert your user name: ").strip().replace(" ", "")
 
-class Figure(ABC):
-    @abstractmethod
-    def area(self):
-        pass
+user_email= input("Insert your user email: ").strip().replace(" ", "")
+        
+name= User(user_name, user_email)
 
+user_account= BankAccount(4000, name)
 
-class Circle(Figure):
-    def __init__(self, radio):
-        self.radio = radio
-
-    def area(self):
-        area_circule = 3.1416 * (self.radio**2)
-        area_circuleround = round(area_circule, 2)
-        return area_circuleround
-
-class Triangle(Figure):
-    def __init__(self, base, height):
-        self.base= base
-        self.height= height
-    
-    def area(self):
-        area_triangle= (self.base * self.height) / 2
-        area_triangleround= round(area_triangle, 2)
-        return area_triangleround
-class Square(Figure):
-    def __init__(self, side):
-        self.side = side  # Side is 'lado' in english
-
-    def area(self):
-        area_square = self.side * self.side
-        area_squareround = round(area_square, 2)
-        return area_squareround
-
-
-while True:
-
-    choice = (
-        input(
-            "Which figure do you want to calculate the area of? - 's' for square, 'c' for circle or 't' for triangle: "
-        )
-        .strip()
-        .replace(" ", "")
-    )
-
-    if choice == "s":
-        print("Area of the square ⏹️")
-        figure = float(
-            input("Insert the measurement of the sides of the square in cm: ")
-        )
-        figure_area = Square(figure)
-        print(f"The area of the squeare is: {figure_area.area()}cm squares.")
-        choice = (
-            input(
-                "Do you want to continue(c) adding or log out(lo) of the system? (c/lo): "
-            )
-            .strip()
-            .replace(" ", "")
-        )
-        if choice == "c":
-            print("Ok, back to the beggining")
-        elif choice == "lo":
-            print("Ok, logging out")
-            break
-        else:
-            print("Error: you can only choice between (c/lo)")
-
-    elif choice == "c":
-        print("Area of the circle⭕")
-        figure = float(input("Insert radio measuraments in cm: "))
-        figure_area = Circle(figure)
-        print(f"The area of the circle is: {figure_area.area()}cm squares.")
-        choice = (
-            input(
-                "Do you want to continue(c) adding or log out(lo) of the system? (c/lo): "
-            )
-            .strip()
-            .replace(" ", "")
-        )
-        if choice == "c":
-            print("Ok, back to the beggining")
-        elif choice == "lo":
-            print("Ok, logging out")
-            break
-        else:
-            print("Error: you can only choice between (c/lo)")
-            
-    elif choice == "t":
-        print("Area of the triangle📐")
-        base = float(input("Insert base measuraments in cm: "))
-        height= float(input("Insert height measuraments in cm: "))
-        figure_area = Triangle(base, height)
-        print(f"The area of the triangle is: {figure_area.area()}cm squares.")
-        choice = (
-            input(
-                "Do you want to continue(c) adding or log out(lo) of the system? (c/lo): "
-            )
-            .strip()
-            .replace(" ", "")
-        )
-        if choice == "c":
-            print("Ok, back to the beggining")
-        elif choice == "lo":
-            print("Ok, logging out")
-            break
-        else:
-            print("Error: you can only choice between (c/lo)")
+user_account.show_user()
+        
